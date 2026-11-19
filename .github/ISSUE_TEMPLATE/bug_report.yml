@@ -1,0 +1,118 @@
+name: Bug report
+description: AVCME crashes, reports wrong values, costs too much time, or the game behaves differently with it installed.
+labels: ["bug", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. AVCME is **experimental**: please check the [FAQ](https://github.com/CptGummiball/AVCME/wiki/FAQ) first.
+
+        If the problem only happens together with a specific other mod, please use the **Mod compatibility** template instead.
+        **Anything that looks like changed gameplay (redstone, farms, fluids, mobs, block entities) or world damage is the most important kind of report – please file it even if you are unsure.**
+
+  - type: dropdown
+    id: minecraft
+    attributes:
+      label: Minecraft version
+      description: The AVCME jar name contains the Minecraft version it is made for.
+      options:
+        - "1.21.1"
+        - "other (write it below)"
+    validations:
+      required: true
+
+  - type: input
+    id: versions
+    attributes:
+      label: AVCME jar, Fabric Loader and Fabric API version
+      description: The exact file name of the AVCME jar, and the Fabric Loader and Fabric API versions.
+      placeholder: "avcme-0.1.0+mc1.21.1-fabric.jar, Fabric Loader 0.20.1, Fabric API 0.116.18+1.21.1"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Where does it happen?
+      options:
+        - Dedicated server
+        - Singleplayer (integrated server)
+        - Both
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: What kind of problem?
+      options:
+        - Crash / server does not start
+        - Gameplay changed with AVCME installed (redstone, farms, fluids, mobs, block entities, ...)
+        - World damage / saving / loading
+        - Performance / server lag caused by AVCME
+        - Wrong or confusing diagnostics (/avcme commands)
+        - Configuration (config/avcme.properties)
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Describe what you saw. For performance problems, include the output of `/avcme metrics` and, if possible, a spark profile.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: The smaller the setup, the faster it can be fixed. Does the problem disappear when AVCME is removed?
+      placeholder: |
+        1. ...
+        2. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: mods
+    attributes:
+      label: Other mods
+      description: The full mod list with versions. Write "none" for a clean install.
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Configuration
+      description: The content of `config/avcme.properties` (or "default").
+      render: properties
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs and crash report
+      description: |
+        Please upload `logs/latest.log` and, if there was a crash, the file from `crash-reports/` (drag and drop into this field, or link a paste site).
+      placeholder: Drop files here or paste a link.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I use the AVCME jar whose name contains my Minecraft version.
+          required: true
+        - label: I have a backup of the affected world (or the world was a test world).
+          required: false
+        - label: I searched the existing issues for this problem.
+          required: true
